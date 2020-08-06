@@ -27,4 +27,16 @@ const register = async (req, res, service) => {
   }
 };
 
-module.exports = { auth, register };
+const check = async (req, res, service) => {
+  try {
+    const body = req.body;
+    const result = await service.tokenCheck(body.token);
+
+    res.send({ status: result });
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+};
+
+module.exports = { auth, register, check };

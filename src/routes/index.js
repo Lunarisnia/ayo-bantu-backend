@@ -1,12 +1,9 @@
 const router = require("express").Router();
 const authRoutes = require("./auth.route");
+const tokenValidator = require('../middlewares/auth.middleware');
 
-router.use(authRoutes);
+router.use("/auth", authRoutes);
+router.use(tokenValidator);
 router.get("/hw", (req, res) => res.send("hello"));
-// router.post('/', async (req, res) => {
-//     await User.create({fullname:"rio", email:"rio@gmail.com", password:"1234"});
-//     const users = await User.find();
-//     res.send(users);
-// });
 
 module.exports = router;

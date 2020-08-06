@@ -16,7 +16,8 @@ class AuthService {
             email: authUser.email,
             token: jwt.sign(
               { fullname: authUser.email, role: authUser.role },
-              process.env.SECRET_KEY
+              process.env.SECRET_KEY,
+              { expiresIn: "2d" }
             ),
           };
           return authUser;
@@ -40,7 +41,8 @@ class AuthService {
         email: result.email,
         token: jwt.sign(
           { fullname: result.email, role: result.role },
-          process.env.SECRET_KEY
+          process.env.SECRET_KEY,
+          { expiresIn: "2d" }
         ),
       };
 
@@ -48,6 +50,21 @@ class AuthService {
     } catch (error) {
       console.log(error);
       throw new Error("Error: A2");
+    }
+  }
+
+  async tokenCheck(token) {
+    try {
+      const result = jwt.verify(token, process.env.SECRET_KEY, (err) => {
+        if (err) {
+          return 0;
+        }
+        return 1;
+      });
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw new Error("Error: A3");
     }
   }
 }
