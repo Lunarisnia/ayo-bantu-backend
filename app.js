@@ -5,7 +5,7 @@ dotenv.config();
 
 const port = process.env.APP_PORT || process.env.PORT;
 connection.on("open",async () => {
-  server.listen(process.env.APP_PORT, "0.0.0.0", () => {
+  server.listen(port, "0.0.0.0", () => {
     if (server.listening) {
       console.log("Server is listening on port: " + process.env.APP_PORT);
     }
