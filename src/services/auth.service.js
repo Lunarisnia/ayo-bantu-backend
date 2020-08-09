@@ -15,7 +15,7 @@ class AuthService {
           authUser = {
             email: authUser.email,
             token: jwt.sign(
-              { fullname: authUser.email, role: authUser.role },
+              { email: authUser.email, role: authUser.role },
               process.env.SECRET_KEY,
               { expiresIn: "2d" }
             ),
@@ -41,7 +41,7 @@ class AuthService {
       result = {
         email: result.email,
         token: jwt.sign(
-          { fullname: result.email, role: result.role },
+          { email: result.email, role: result.role },
           process.env.SECRET_KEY,
           { expiresIn: "2d" }
         ),
