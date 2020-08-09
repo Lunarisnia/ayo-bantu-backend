@@ -36,6 +36,7 @@ class AuthService {
   async addNewUser(newUser) {
     try {
       newUser.password = bcrypt.hashSync(newUser.password);
+      newUser.role = 0;
       let result = await this.user.create(newUser);
       result = {
         email: result.email,
