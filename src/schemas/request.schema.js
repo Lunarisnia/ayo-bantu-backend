@@ -7,6 +7,7 @@ const requestSchema = new Schema({
     description: String,
     creatorUser: Object,
     address: Object,
+    needs: Array,
     coordinate: Object,
     donatorCount: Number,
     photo: String,

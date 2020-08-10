@@ -1,12 +1,15 @@
-class RequestService {
-  constructor(request) {
-    // super();
+const UserService = require("./user.service");
+const jwt = require('jsonwebtoken');
+
+class RequestService extends UserService{
+  constructor(user, request) {
+    super(user);
     this.request = request;
   }
 
-  async addNewPost(post, userEmail) {
+  async addNewPost(post, token) {
     try {
-      let user = await this.user.findOne({ email: userEmail });
+      let user = await this.fetchCurrentUser(token);
 
       post.creatorUser = user;
       post.postedAt = Date();
